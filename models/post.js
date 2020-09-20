@@ -5,8 +5,7 @@ function getPosts() {
     `
   SELECT a.id, a.img, a.title, a.content, a.post_date, b.username FROM posts a
   JOIN users b
-  ON a.user_id = b.id
-  ORDER BY DATE(a.post_date, 109) DESC`
+  ON a.user_id = b.id`
   );
 }
 
@@ -15,8 +14,7 @@ function getPostsByUsername(username) {
     `SELECT a.id, a.img, a.title, a.content, a.post_date, b.username FROM posts a
     JOIN users b
     ON a.user_id = b.id
-    WHERE b.username = $1
-    ORDER BY DATE(a.post_date) DESC`,
+    WHERE b.username = $1`,
     username
   );
 }

@@ -2,21 +2,26 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { verifyUser } from "./api/apiUsers";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import Nav from "./components/Nav";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Posts from "./components/Posts";
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState(null);
 
-  useEffect = async () => {
-    try {
-      const response = await verifyUser();
-      console.log(response);
-      setUser(response.user);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    const handleUser = async () => {
+      try {
+        const response = await verifyUser();
+        console.log(response);
+        setUser(response.user);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleUser();
+  }, []);
 
   const signout = async () => {
     localStorage.removeItem("token");
@@ -31,9 +36,11 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <Nav />
-      </div>
+      <Route exact path="/" component={Login} />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/posts" component={Posts} />
+      {/* <Route exact path="/posts/:username" component={UserPosts} />
+      <Route exact path="/posts/:id" component={Post} /> */}
     </Router>
   );
 }

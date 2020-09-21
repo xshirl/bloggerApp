@@ -26,7 +26,7 @@ export default function Login() {
   };
 
   let Site;
-
+  console.log(loggedIn);
   if (!loggedIn) {
     Site = (
       <div>

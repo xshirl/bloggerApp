@@ -5,7 +5,9 @@ export default function Nav() {
   return (
     <div className="ui fixed inverted menu">
       <div className="ui container">
-        <div className="header item"></div>
+        <div class="header item">
+          <i class="code icon"></i> Blogger{" "}
+        </div>
         <Link to="/" className="item">
           Home
         </Link>

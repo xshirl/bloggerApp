@@ -1,4 +1,5 @@
-\c blogs
+-- \c blogs
+
 
 INSERT INTO users(email, pw_digest, username)
 VALUES('xshirl525@gmail.com', '12345', 'xshirl');

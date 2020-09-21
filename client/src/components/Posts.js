@@ -68,6 +68,7 @@ export default function Posts() {
                       </a>
                       <div class="meta">
                         <span>{post.post_date.slice(0, 10)}</span>
+                        <span>{post.username}</span>
                       </div>
                       <div class="description">
                         <p>{content}</p>

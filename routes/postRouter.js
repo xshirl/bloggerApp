@@ -20,7 +20,7 @@ router
   );
 
 router
-  .route("/:username")
+  .route("/user/:username")
   .get(
     authController.restrict,
     postController.getPostsByUsername,

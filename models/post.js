@@ -22,8 +22,10 @@ function getPostsByUsername(username) {
 function getPost(id) {
   return db.one(
     `
-  SELECT * FROM posts
-  WHERE id= $1`,
+    SELECT a.id, a.img, a.title, a.content, a.post_date, b.username FROM posts a
+    JOIN users b
+    ON a.user_id = b.id
+    WHERE a.id= $1`,
     id
   );
 }

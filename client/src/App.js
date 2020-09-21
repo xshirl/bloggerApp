@@ -6,6 +6,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Posts from "./components/Posts";
 import NewPost from "./components/NewPost";
+import Post from "./components/Post";
+import EditPost from "./components/EditPost";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -39,10 +41,11 @@ function App() {
     <Router>
       <Route exact path="/" component={Login} />
       <Route exact path="/register" component={Register} />
+      <Route exact path="/login" component={Login} />
       <Route exact path="/posts" component={Posts} />
       <Route exact path="/newPost" component={NewPost} />
-      {/* <Route exact path="/posts/:username" component={UserPosts} />
-      <Route exact path="/posts/:id" component={Post} /> */}
+      <Route exact path="/posts/:id" component={Post} />
+      <Route exact path="/posts/:id/edit" component={EditPost} />
     </Router>
   );
 }

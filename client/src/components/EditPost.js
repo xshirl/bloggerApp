@@ -1,56 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { verifyUser, login } from "../api/apiUsers";
-import { createPost } from "../api/apiCalls";
 import Nav from "./Nav";
-import "../App.css";
+import { getPost, updatePostById } from "../api/apiCalls";
 
-export default function NewPost(props) {
-  const [post, setPost] = useState({
-    title: "",
-    img: "",
-    content: "",
-    user_id: 0,
-  });
-
+export default function EditPost(props) {
+  const [post, setPost] = useState({});
   useEffect(() => {
-    const handleUser = async () => {
+    const handlePost = async () => {
       try {
-        const response = await verifyUser();
+        const id = props.match.params.id;
+        const response = await getPost(id);
+        setPost(response);
         console.log(response);
-        setPost({ ...post, user_id: response.user.id });
       } catch (error) {
         console.log(error);
       }
     };
-    handleUser();
+    handlePost();
   }, []);
 
-  const submitPost = async (e) => {
+  const editPost = async (e) => {
     e.preventDefault();
-
     try {
-      console.log("submitPost", post);
-      await createPost(post);
+      await updatePostById(post.id, post);
       props.history.push("/posts");
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log(post);
   return (
     <div>
       <Nav />
       <div class="ui main text container segment mt-100">
-        <div class="ui huge header salmon">New Post </div>
-        <form class="ui form" onSubmit={submitPost}>
+        <div class="ui huge header salmon">Edit Post</div>
+        <form class="ui form" onSubmit={editPost}>
           <div class="field">
             <label> Title </label>
             <input
               type="text"
               name="title"
               onChange={(e) => setPost({ ...post, title: e.target.value })}
-              placeholder="title"
+              placeholder={post.title}
             />
           </div>
 
@@ -60,7 +50,7 @@ export default function NewPost(props) {
               type="text"
               name="img"
               onChange={(e) => setPost({ ...post, img: e.target.value })}
-              placeholder="image"
+              placeholder={post.img}
             />
           </div>
 
@@ -69,7 +59,7 @@ export default function NewPost(props) {
             <textarea
               name="content"
               onChange={(e) => setPost({ ...post, content: e.target.value })}
-              placeholder="blog post goes here"
+              placeholder={post.content}
             >
               {" "}
             </textarea>

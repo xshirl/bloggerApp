@@ -9,7 +9,7 @@ export const getPosts = async () => {
   }
 };
 
-export const getPostById = async (id) => {
+export const getPost = async (id) => {
   try {
     const response = await api.get(`/posts/${id}`);
     return response.data;
@@ -36,7 +36,7 @@ export const createPost = async (payload) => {
   }
 };
 
-export const updateEventById = async (id, payload) => {
+export const updatePostById = async (id, payload) => {
   try {
     const response = await api.put(`/posts/${id}`, payload);
     return response.data;
@@ -45,7 +45,7 @@ export const updateEventById = async (id, payload) => {
   }
 };
 
-export const deleteEventById = async (id) => {
+export const deletePostById = async (id) => {
   try {
     const response = await api.delete(`/posts/${id}`);
   } catch (error) {
